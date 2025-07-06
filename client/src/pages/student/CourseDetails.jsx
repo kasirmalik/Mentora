@@ -86,6 +86,11 @@ function CourseDetails() {
                           </div>
                         ))}
                       </div>
+                      <div>
+                        <h3 className='text-xl font-semibold text-gray-800'>Course Description</h3>
+                         <p className='pt-3 rich-text' dangerouslySetInnerHTML={{__html:courseData.courseDescription}}></p>
+                        
+                      </div>
                   </div>
        
       </div>
