@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { AppContext } from '../../context/AppContext';
 import Loading from '../../components/students/Loading';
 import { assets } from '../../assets/assets';
+import humanizeDuration from 'humanize-duration';
 
 function CourseDetails() {
   const {id} = useParams();
@@ -43,6 +44,40 @@ function CourseDetails() {
                     <p>{courseData.enrolledStudents.length} {courseData.enrolledStudents.length > 1? 'students':'student'}</p>
                   </div>
                   <p>Course by <span className='text-blue-600 underline'>kasir Malik</span></p>
+
+                  <div className='pt-8 text-gray-800'>
+                      <h2 className="text-xl font-semibold">Course Structure</h2>
+
+                      <div className="pt-5">
+                        {courseData.courseContent.map((chapter,index)=>(
+                          <div key={index} className='border border-gray-300 bg-white mb-2 rounded'>
+                            <div className='flex items-center justify-between p-4 cursor-pointer hover:bg-gray-100 select-none py-3'>
+                              <div className='flex items-center gap-2'>
+                                <img src={assets.down_arrow_icon} alt="arrow-icon" />
+                                <p className='font-medium md:text-base text-sm'>{chapter.chapterTitle}</p>
+                              </div>
+                              <p className='text-sm md:text-default'>{chapter.chapterContent.length} lectures - {calculateChapterTime(chapter)}</p>
+                            </div>
+                            <div>
+                              <ul>
+                                {chapter.chapterContent.map((lecture,i)=>(
+                                  <li key={i}>
+                                    <img src={assets.play_icon} alt="play-icon" className='w-4 h-4 mt-1'/>
+                                    <div>
+                                      <p>{lecture.lectureTitle}</p>
+                                      <div>
+                                        {lecture.isPreveiwFree && <p>Preveiw</p>}
+                                        <p>{humanizeDuration(lecture.lectureDuration * 60 * 1000, {units:['h','m']})}</p>
+                                      </div>
+                                    </div>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                  </div>
        
       </div>
       {/* Right colum */}
