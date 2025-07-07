@@ -10,6 +10,7 @@ export const AppContextProvider = (props) => {
   const navigate = useNavigate();
   const [allCourses, setAllCourses] = useState([]);
   const [isEducator, setIsEducator] = useState(true);
+  const [enrolledCourses, setEnrolledCourses] = useState([]);
 
   // fetch all courses
   const fetchAllCourses = async () => {
@@ -54,8 +55,15 @@ export const AppContextProvider = (props) => {
     });
     return totalLectures;
   };
+  // useEffect to fetch all courses on component mount
+  const fetchEnrolledCourses = async () => {
+    // This function would typically fetch enrolled courses from an API
+    // For now, we will use dummy data
+    setEnrolledCourses(dummyCourses);
+  };
   useEffect(() => {
     fetchAllCourses();
+    fetchEnrolledCourses();
   }, []);
   const value = {
     currency,
@@ -67,6 +75,9 @@ export const AppContextProvider = (props) => {
     calculateChapterTime,
     calculateCourseDuration,
     calculateNumberOfLectures,
+    enrolledCourses,
+    fetchEnrolledCourses,
+    
   };
   return (
     <AppContext.Provider value={value}>{props.children}</AppContext.Provider>
