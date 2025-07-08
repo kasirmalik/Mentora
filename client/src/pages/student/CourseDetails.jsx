@@ -5,7 +5,7 @@ import Loading from "../../components/students/Loading";
 import { assets } from "../../assets/assets";
 import humanizeDuration from "humanize-duration";
 import Footer from '../../components/students/Footer'
-import Youtube from 'react-youtube'
+import YouTube from 'react-youtube'
 
 function CourseDetails() {
   const { id } = useParams();
@@ -155,7 +155,7 @@ function CourseDetails() {
                   </div>
                 </div>
               ))}
-            </div>
+            </div> // Course content end
             <div>
               <h3 className="text-xl font-semibold text-gray-800">
                 Course Description
@@ -172,7 +172,7 @@ function CourseDetails() {
         {/* Right colum */}
         <div className="max-w-course-card z-10 shadow-custom-card rounded-t md:rounded-none overflow-hidden bg-white min-w-[300px] sm:w-[420px] ">
            {
-                  playerData ? <Youtube videoId={playerData.videoId} opts={{playerVars:{autoplay:1}}} iframeClassName="w-full aspect-vedio"/>
+                  playerData ? <YouTube videoId={playerData.videoId} opts={{playerVars:{autoplay:1}}} iframeClassName="w-full aspect-vedio"/>
 
                   : <img src={courseData.courseThumbnail} alt="" />
                 }
