@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { assets } from '../../assets/assets';
 import YouTube from 'react-youtube';
 import Footer from '../../components/students/Footer';
+import Rating from '../../components/students/Rating';
 
 function Player() {
   const {enrolledCourses,calculateChapterTime}= useContext(AppContext);
@@ -103,6 +104,10 @@ function Player() {
                         </div>
                       ))}
                     </div>
+      </div>
+      <div className='flex items-center gap-2 py-3 mt-10'>
+        <h1 className='text-xl font-bold'>Rate this Course</h1>
+        <Rating initailRating={0}/> 
       </div>
       {/* right colum */}
       <div className='md:mt-10'>
