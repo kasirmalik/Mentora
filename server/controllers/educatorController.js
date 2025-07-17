@@ -1,4 +1,5 @@
 import {clerkClient} from '@clerk/express'
+import { v2 as cloudinary } from "cloudinary";
 
 export const updateRoleToEducator = async (req,res)=>{
     try {
@@ -39,4 +40,17 @@ export const addCourse = async (req,res)=>{
     } catch (error) {
         res.json({ success: false, message: error.message });
     }
-}
+};
+
+// get educator courses
+
+export const getEducatorCourses = async (req,res)=>{
+    try {
+        const userId = req.auth.userId;
+        const courses = await Course.find({ educator: userId });
+        res.json({ success: true, courses });
+    } catch (error) {
+        res.json({ success: false, message: error.message });
+    }
+};
+
