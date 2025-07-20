@@ -69,7 +69,7 @@ export const AppContextProvider = (props) => {
     fetchEnrolledCourses();
   }, []);
   const logToken = async ()=>{
-    console.log( await getToken());
+    return await getToken()
   }
   useEffect(()=>{
     if (user) {
